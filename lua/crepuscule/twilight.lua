@@ -1,4 +1,5 @@
-local M = {}
+--Most of the code in this file was copied from https://forum.logicmachine.net/printthread.php?tid=14
+--It was slightly refactored to eliminate luals diagnostic warnings
 
 local pi = math.pi
 local doublepi = pi * 2
@@ -22,8 +23,6 @@ local function range(x)
 end
 
 ---sunrise / sunset calculation
----Refactored to eliminate luals diagnostic warnings
----Reference: https://forum.logicmachine.net/printthread.php?tid=14
 ---@param latitude number in degrees
 ---@param longitude number in degrees
 ---@param when? osdate date at which to calculate sunrise/sunset, defaults to now
@@ -90,9 +89,7 @@ end
 ---@param when? osdate date at which to calculate sunrise/sunset, defaults to now
 ---@return string sunrise time in HH:MM format
 ---@return string sunset time in HH:MM format
-function M.twilight(latitude, longitude, when)
+return function(latitude, longitude, when)
   local sunrise, sunset = rscalc(latitude, longitude, when)
   return minutes_to_time(sunrise), minutes_to_time(sunset)
 end
-
-return M
