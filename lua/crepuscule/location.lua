@@ -1,6 +1,7 @@
 local M = {}
 
 local curl = require("plenary.curl")
+local log = require("crepuscule.logger")
 
 ---@class crepuscule.CurlResult
 ---@field  exit number The shell process exit code
@@ -21,6 +22,13 @@ function M.geo_coordinates(callback)
         end
       end
     end,
+    on_error = function(info)
+      if info and type(info.stderr) == "string" then
+        log("unexpected error getting geo coordinates: " .. info.stderr, vim.log.levels.DEBUG)
+      else
+        log("unexpected error getting geo coordinates: " .. vim.inspect(info), vim.log.levels.DEBUG)
+      end
+    end
   })
 end
 
