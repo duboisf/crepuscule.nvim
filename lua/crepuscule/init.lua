@@ -17,8 +17,8 @@ function M.setup(cfg)
     end
   end
   local timer = vim.loop.new_timer()
-  location.geo_coordinates(function(latitude, longitude)
-    local sunrise, sunset = twilight(latitude, longitude)
+  location.geo_coordinates(function(success, coordinates)
+    local sunrise, sunset = twilight(coordinates.latitude, coordinates.longitude)
     log("sunrise=" .. sunrise .. ", sunset=" .. sunset, vim.log.levels.DEBUG)
     if timer == nil then
       log("crepuscule: unexpected error: timer is nil", vim.log.levels.ERROR)
