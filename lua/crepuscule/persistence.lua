@@ -8,7 +8,7 @@ local uv = vim.loop
 local data = {}
 -- indicates whether the data has been modified since the last load/save
 local dirty = false
-local persisted_filepath = vim.fn.stdpath("data") .. "/crepuscule.json"
+local persisted_filepath = vim.fn.stdpath("cache") .. "/crepuscule.json"
 
 ---@return crepuscule.Persistence
 function persistence.new()
