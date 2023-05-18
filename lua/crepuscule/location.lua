@@ -51,8 +51,9 @@ curl -q "https://ipapi.co/8.8.8.8json/"
 ---@field longitude number
 
 ---Get the geo coordinates using the ipapi.co service.
----@param callback fun(success: boolean, coordinates: crepuscule.GeoCoordinates)
+---@param callback fun(coordinates: crepuscule.GeoCoordinates?)
 function M.geo_coordinates(callback)
+  log("getting geo coordinates", vim.log.levels.DEBUG)
   curl.get("https://ipapi.co/json/", {
     ---@param result crepuscule.CurlResult
     callback = function(result)
@@ -60,10 +61,12 @@ function M.geo_coordinates(callback)
         ---@type crepuscule.IpApiResult?
         local data = vim.json.decode(result.body)
         if data ~= nil then
-          callback(true, {
+          callback({
             latitude = data.latitude,
             longitude = data.longitude,
           })
+        else
+          callback(nil)
         end
       end
     end,
