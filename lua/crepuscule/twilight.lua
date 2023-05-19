@@ -84,12 +84,11 @@ local minutes_to_time = function(minutes)
 end
 
 ---Get the sunrise and sunset times for a given location
----@param latitude number in degrees
----@param longitude number in degrees
+---@param coords crepuscule.GeoCoordinates
 ---@param when? osdate date at which to calculate sunrise/sunset, defaults to now
 ---@return string sunrise time in HH:MM format
 ---@return string sunset time in HH:MM format
-return function(latitude, longitude, when)
-  local sunrise, sunset = rscalc(latitude, longitude, when)
+return function(coords, when)
+  local sunrise, sunset = rscalc(coords.latitude, coords.longitude, when)
   return minutes_to_time(sunrise), minutes_to_time(sunset)
 end
