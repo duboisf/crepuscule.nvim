@@ -16,15 +16,14 @@ The main motivation for this plugin was that I sometimes use my Chromebook to co
 
 ## How it works
 
-It gets the geo coordinates using the ipapi.co API (super nice API!) and then calculates the sunrise and suntset times.
+1. Geo coordinates are obtained using the ipapi.co API.
+2. The sunrise and sunset times are calculated based on the obtained coordinates.
+3. The background color is changed according to the time of day.
+4. A timer is scheduled to update the background so that the background switches automatically while nvim is open.
 
-The code to calculate the sunrise/sunset was copied from an obscure [forum post](https://forum.logicmachine.net/printthread.php?tid=14). I don't know if it's correct or not, but it seems to give times enough for me!
+The code to calculate the sunrise/sunset was copied from an obscure [forum post](https://forum.logicmachine.net/printthread.php?tid=14). I have no idea if it's correct or not, but it seems to give times that are pretty close to the actual sunset and sunrise times!
 
 For now the geo coordinates are cached permanently as to be nice with the ipapi.co API.
-
-The background color is changed according to the time of day.
-
-A timer is scheduled to update the background so that the background switches automatically while nvim is open.
 
 ## Aren't there better ways to do this?
 
